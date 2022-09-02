@@ -3,7 +3,7 @@ import React from "react";
 const Main = () => {
   return (
     <div>
-      <div className="titleBtn">
+      <div className="wrapper">
         <div className="title">Quiz Quiz</div>
         <button>Get Started!</button>
       </div>

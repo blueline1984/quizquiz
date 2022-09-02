@@ -5,34 +5,35 @@ body {
   font-family: "Secular One", sans-serif;
 }
 
-.titleBtn {
+.wrapper {
   display: inline-block;
   position: absolute;
-  left: 50%;
+  left: 48%;
   top: 30%;
 }
 
-.titleBtn .title {
+.wrapper .title {
   font-family: "Rubik Marker Hatch";
-  font-size: 8vw;
+  font-size: 9vw;
   color: #50aa63;
 }
 
-.titleBtn button {
-  width: 50%;
-  height: 5vh;
+.wrapper button {
+  width: 60%;
+  height: 6vh;
   border: none;
-  margin-left: 28%;
-  margin-top: 10%;
-  font-size: 1vw;
-  color: #fff;
+  margin-left: 23%;
+  margin-top: 5%;
+  font-size: 2rem;
   background-color: #50aa63;
+  color: #fff;
   border-radius: 100px;
   font-family: "Secular One", sans-serif;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.titleBtn button:hover {
+.wrapper button:hover {
   color: #50aa63;
   background-color: #fff;
   border: 1px solid #50aa63;
@@ -45,7 +46,6 @@ body {
 .question-img-1 {
   position: absolute;
   width: 35%;
-  height: 150%;
   top: 100%;
   left: 5%;
   transform: rotate(140deg);
@@ -59,7 +59,6 @@ body {
 .question-img-2 {
   position: absolute;
   width: 28%;
-  height: 130%;
   top: -25%;
   left: 18%;
   transition: all ease 2s;
