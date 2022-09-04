@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+  font-family: "Secular One", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.wrapper {
+  display: inline-block;
+  position: absolute;
+  left: 48%;
+  top: 30%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.wrapper .title {
+  font-family: "Rubik Marker Hatch";
+  font-size: 9vw;
+  color: #50aa63;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.wrapper button {
+  width: 60%;
+  height: 6vh;
+  border: none;
+  margin-left: 23%;
+  margin-top: 5%;
+  font-size: 2rem;
+  background-color: #50aa63;
+  color: #fff;
+  border-radius: 100px;
+  font-family: "Secular One", sans-serif;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.wrapper button:hover {
+  color: #50aa63;
+  background-color: #fff;
+  border: 1px solid #50aa63;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.questions {
+  position: relative;
+}
+
+.question-img-1 {
+  position: absolute;
+  width: 35%;
+  top: 100%;
+  left: 5%;
+  transform: rotate(140deg);
+  transition: all ease 1s;
+}
+
+.question-img-1:hover {
+  transform: rotate(30deg);
+}
+
+.question-img-2 {
+  position: absolute;
+  width: 28%;
+  top: -25%;
+  left: 18%;
+  transition: all ease 2s;
+  transform: rotate(375deg);
+}
+
+.question-img-2:hover {
+  transform: rotate(250deg);
+}
+
+.question-img-3 {
+  position: relative;
+  width: 25%;
+  top: 0%;
+  left: -3%;
+  transform: rotate(345deg);
+  transition: all ease 2s;
+}
+
+.question-img-3:hover {
+  transform: rotate(0deg);
 }
