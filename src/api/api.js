@@ -8,7 +8,8 @@ export const fetchQuizData = async (number, difficulty, category) => {
 
   return data.results.map((quizData) => ({
     ...quizData,
-    answers: quizData.correct_answer,
-    options: [...quizData.incorrect_answers].sort(() => Math.random - 0.5),
+    answers: [...quizData.incorrect_answers, quizData.correct_answer].sort(
+      () => Math.random - 0.5
+    ),
   }));
 };

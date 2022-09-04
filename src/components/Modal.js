@@ -11,8 +11,10 @@ const Modal = ({
   backgroundColor,
   informationContent,
   closeModal,
+  setQuiz,
+  setIsOver,
+  setIsLoading,
 }) => {
-  const [quiz, setQuiz] = useState([]);
   const [number, setNumber] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
@@ -29,11 +31,13 @@ const Modal = ({
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const test = await fetchQuizData(number, difficulty, category);
-    setQuiz(test);
-  };
+    setIsLoading(true);
+    setIsOver(false);
 
-  const onMoveToQuizPage = () => {
+    const newQuiz = await fetchQuizData(number, difficulty, category);
+    setQuiz(newQuiz);
+    setIsLoading(false);
+
     navigate("/quiz");
   };
 
@@ -59,9 +63,7 @@ const Modal = ({
               options={DIFFICULTY}
               hadleSelectBox={handleDifficulty}
             />
-            <button type="submit" onClick={onMoveToQuizPage}>
-              Start
-            </button>
+            <button type="submit">Start</button>
             <button onClick={closeModal}>Cancel</button>
           </form>
         </ModalBody>
