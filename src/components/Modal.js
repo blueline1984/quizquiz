@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Portal from "../Potal";
 import QuizSelectBox from "../components/QuizSelectBox";
@@ -15,6 +16,7 @@ const Modal = ({
   const [number, setNumber] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
+  const navigate = useNavigate();
 
   const handleNumber = (event) => {
     setNumber(event.target.value);
@@ -29,6 +31,10 @@ const Modal = ({
     event.preventDefault();
     const test = await fetchQuizData(number, difficulty, category);
     setQuiz(test);
+  };
+
+  const onMoveToQuizPage = () => {
+    navigate("/quiz");
   };
 
   return (
@@ -53,7 +59,9 @@ const Modal = ({
               options={DIFFICULTY}
               hadleSelectBox={handleDifficulty}
             />
-            <button type="submit">Start</button>
+            <button type="submit" onClick={onMoveToQuizPage}>
+              Start
+            </button>
             <button onClick={closeModal}>Cancel</button>
           </form>
         </ModalBody>
