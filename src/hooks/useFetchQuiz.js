@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const useFetchQuiz = () => {
-  const [quizLists, setQuizLists] = useState([]);
-  const [quizNumber, setQuizNumber] = useState(10);
-  const [quizCategory, setQuizCategory] = useState("9");
-  const [quizDifficulty, setQuizDifficulty] = useState("easy");
-
+export const useFetchQuiz = (quizNumber, quizDifficulty, quizCategory) => {
   const baseURL = process.env.REACT_APP_API_URL;
+  const [quizLists, setQuizLists] = useState([]);
 
-  useEffect(() => {
+  const fetchData = () => {
     axios
       .get(
         `${baseURL}amount=${quizNumber}&difficulty=${quizDifficulty}&category=${quizCategory}`
@@ -28,16 +24,11 @@ export const useFetchQuiz = () => {
           })
         );
       });
-  }, []);
+  };
 
-  return [
-    quizLists,
-    setQuizLists,
-    quizNumber,
-    setQuizNumber,
-    quizCategory,
-    setQuizCategory,
-    quizDifficulty,
-    setQuizDifficulty,
-  ];
+  useEffect(() => {
+    fetchData();
+  }, [quizNumber, quizDifficulty, quizCategory]);
+
+  return quizLists;
 };

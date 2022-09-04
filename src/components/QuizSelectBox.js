@@ -1,14 +1,22 @@
 import React from "react";
 
-const QuizSelectBox = ({ options }) => {
+const QuizSelectBox = ({ label, options, hadleSelectBox }) => {
   return (
-    <select>
-      {options.map((option) => (
-        <option key={option.value} vlaue={option.value}>
-          {option.name}
-        </option>
-      ))}
-    </select>
+    <>
+      <label htmlFor={label}>{label}</label>
+      <select
+        id={label}
+        onChange={(event) => {
+          hadleSelectBox(event);
+        }}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.name}
+          </option>
+        ))}
+      </select>
+    </>
   );
 };
 

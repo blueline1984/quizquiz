@@ -1,23 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Portal from "../Potal";
 import QuizSelectBox from "../components/QuizSelectBox";
 import { NUMBER, CATEGORY, DIFFICULTY } from "../config/quizSelect";
+import { fetchQuizData } from "../api/api";
 
-const Modal = ({ message, backgroundColor, informationContent }) => {
+const Modal = ({
+  message,
+  backgroundColor,
+  informationContent,
+  closeModal,
+}) => {
+  const [quiz, setQuiz] = useState([]);
+  const [number, setNumber] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [category, setCategory] = useState("");
+
+  const handleNumber = (event) => {
+    setNumber(event.target.value);
+  };
+  const handleDifficulty = (event) => {
+    setDifficulty(event.target.value);
+  };
+  const handleCategory = (event) => {
+    setCategory(event.target.value);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const test = await fetchQuizData(number, difficulty, category);
+    setQuiz(test);
+  };
+
   return (
     <Portal>
       <ModalOverlay>
         <ModalBody style={{ backgroundColor: `${backgroundColor}` }}>
           <ModalContent>{message}</ModalContent>
           {informationContent}
-          <form>
-            <QuizSelectBox options={NUMBER} />
-            <QuizSelectBox options={CATEGORY} />
-            <QuizSelectBox options={DIFFICULTY} />
+          <form onSubmit={handleSubmit}>
+            <QuizSelectBox
+              label="Number"
+              options={NUMBER}
+              hadleSelectBox={handleNumber}
+            />
+            <QuizSelectBox
+              label="Category"
+              options={CATEGORY}
+              hadleSelectBox={handleCategory}
+            />
+            <QuizSelectBox
+              label="Difficulty"
+              options={DIFFICULTY}
+              hadleSelectBox={handleDifficulty}
+            />
+            <button type="submit">Start</button>
+            <button onClick={closeModal}>Cancel</button>
           </form>
-          <button>Start</button>
-          <button>Cancel</button>
         </ModalBody>
       </ModalOverlay>
     </Portal>
