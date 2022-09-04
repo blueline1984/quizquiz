@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../components/Modal";
 
 const Main = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       <div className="wrapper">
         <div className="title">Quiz Quiz</div>
-        <button>Get Started!</button>
+        <button onClick={openModal}>Get Started!</button>
+        {isModalOpen && (
+          <Modal backgroundColor="#fff" closeModal={closeModal} />
+        )}
       </div>
       <div className="questions">
         <img
