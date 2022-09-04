@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Portal from "../Potal";
 import QuizSelectBox from "../components/QuizSelectBox";
+import { NUMBER, CATEGORY, DIFFICULTY } from "../config/quizSelect";
 
 const Modal = ({ message, backgroundColor, informationContent }) => {
   return (
