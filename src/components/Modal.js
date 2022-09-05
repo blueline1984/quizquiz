@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Portal from "../Potal";
 import QuizSelectBox from "../components/QuizSelectBox";
-import { NUMBER, CATEGORY, DIFFICULTY } from "../config/quizSelect";
+import { AMOUNT, CATEGORY, DIFFICULTY } from "../config/quizSelect";
 import { fetchQuizData } from "../api/api";
 
 const Modal = ({
@@ -14,14 +14,16 @@ const Modal = ({
   setQuiz,
   setIsOver,
   setIsLoading,
+  setNumber,
+  setUserAnswers,
 }) => {
-  const [number, setNumber] = useState("");
-  const [difficulty, setDifficulty] = useState("");
-  const [category, setCategory] = useState("");
+  const [amount, setAmount] = useState("10");
+  const [difficulty, setDifficulty] = useState("easy");
+  const [category, setCategory] = useState("9");
   const navigate = useNavigate();
 
   const handleNumber = (event) => {
-    setNumber(event.target.value);
+    setAmount(event.target.value);
   };
   const handleDifficulty = (event) => {
     setDifficulty(event.target.value);
@@ -34,10 +36,11 @@ const Modal = ({
     setIsLoading(true);
     setIsOver(false);
 
-    const newQuiz = await fetchQuizData(number, difficulty, category);
+    const newQuiz = await fetchQuizData(amount, difficulty, category);
     setQuiz(newQuiz);
+    setUserAnswers([]);
+    setNumber(0);
     setIsLoading(false);
-
     navigate("/quiz");
   };
 
@@ -50,7 +53,7 @@ const Modal = ({
           <form onSubmit={handleSubmit}>
             <QuizSelectBox
               label="Number"
-              options={NUMBER}
+              options={AMOUNT}
               hadleSelectBox={handleNumber}
             />
             <QuizSelectBox

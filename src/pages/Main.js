@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import Modal from "../components/Modal";
 
-const Main = ({ setQuiz, setIsOver, setIsLoading }) => {
+const Main = ({
+  setQuiz,
+  setIsOver,
+  setIsLoading,
+  setNumber,
+  setUserAnswers,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -23,6 +29,8 @@ const Main = ({ setQuiz, setIsOver, setIsLoading }) => {
             setQuiz={setQuiz}
             setIsOver={setIsOver}
             setIsLoading={setIsLoading}
+            setNumber={setNumber}
+            setUserAnswers={setUserAnswers}
           />
         )}
       </div>

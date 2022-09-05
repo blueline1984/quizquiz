@@ -12,6 +12,46 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [isOver, setIsOver] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  console.log("userAnswers", userAnswers);
+
+  //퀴즈 정답여부 확인 함수
+  const checkAnswer = (event) => {
+    //분리 가능
+    const checkedAnswer = event.target.innerHTML;
+    const isCorrect = quiz[number].correct_answer === checkedAnswer;
+    const answerObject = {
+      question: quiz[number].question,
+      checkedAnswer,
+      isCorrect,
+      correctAnswer: quiz[number].correct_answer,
+    };
+
+    if (!isOver) {
+      if (isCorrect) {
+        console.log("correct");
+      } else {
+        console.log("wrong");
+      }
+      setUserAnswers((prev) => [...prev, answerObject]);
+    }
+  };
+  const nextQuiz = () => {
+    const nextQuizNumber = number + 1;
+
+    if (nextQuizNumber === quiz.length) {
+      setIsOver(true);
+      console.log("문제 끝");
+    } else {
+      setNumber(nextQuizNumber);
+    }
+  };
+  const prevQuiz = () => {
+    const prevQuizNumber = number - 1;
+
+    if (prevQuizNumber >= 0) {
+      setNumber(prevQuizNumber);
+    }
+  };
 
   return (
     <Routes>
@@ -22,6 +62,8 @@ const App = () => {
             setQuiz={setQuiz}
             setIsOver={setIsOver}
             setIsLoading={setIsLoading}
+            setNumber={setNumber}
+            setUserAnswers={setUserAnswers}
           />
         }
       ></Route>
@@ -35,6 +77,12 @@ const App = () => {
               question={quiz[number].question}
               answers={quiz[number].answers}
               userAnswers={userAnswers ? userAnswers[number] : undefined}
+              checkAnswer={checkAnswer}
+              prevQuiz={prevQuiz}
+              nextQuiz={nextQuiz}
+              isOver={isOver}
+              isLoading={isLoading}
+              number={number}
             />
           )
         }
