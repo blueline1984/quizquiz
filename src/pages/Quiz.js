@@ -1,4 +1,4 @@
-import React from "react";
+import styled from "styled-components";
 
 const Quiz = ({
   quizNumber,
@@ -12,22 +12,46 @@ const Quiz = ({
   isLoading,
   number,
 }) => {
-  console.log("userAnswers", userAnswers);
+  console.log(userAnswers);
   return (
-    <>
-      <p dangerouslySetInnerHTML={{ __html: `Q${quizNumber} ${question}` }}></p>
-      <div>
-        {answers.map((answer) => (
-          <div key={answer}>
-            <button
-              disabled={userAnswers ? true : false}
-              value={answer}
-              onClick={checkAnswer}
+    <Wrapper correct={userAnswers?.isCorrect}>
+      <div className="container">
+        <p
+          className="question"
+          dangerouslySetInnerHTML={{ __html: `Q${quizNumber}. ${question}` }}
+        ></p>
+        <div className="options">
+          {answers.map((answer) => (
+            <ButtonWrapper
+              key={answer}
+              correct={userAnswers?.correctAnswer === answer}
+              clicked={userAnswers?.checkedAnswer === answer}
             >
-              <span dangerouslySetInnerHTML={{ __html: answer }}></span>
-            </button>
-          </div>
-        ))}
+              <button
+                disabled={userAnswers ? true : false}
+                value={answer}
+                onClick={checkAnswer}
+              >
+                <span dangerouslySetInnerHTML={{ __html: answer }}></span>
+              </button>
+            </ButtonWrapper>
+          ))}
+        </div>
+        <div className="indicator">
+          {userAnswers ? (
+            <>
+              {userAnswers.isCorrect ? (
+                <div>Correct Answer!</div>
+              ) : (
+                <div>Wrong Answer!</div>
+              )}
+              <div className="compareAnswer">
+                <div>Your Answer: {userAnswers.checkedAnswer} </div>
+                <div>Correct Answer: {userAnswers.correctAnswer}</div>
+              </div>
+            </>
+          ) : null}
+        </div>
         {!isOver && !isLoading && number > 0 && (
           <button onClick={prevQuiz}>Prev Quiz</button>
         )}
@@ -37,8 +61,77 @@ const Quiz = ({
           <button onClick={nextQuiz}>Next Quiz</button>
         )}
       </div>
-    </>
+    </Wrapper>
   );
 };
+
+//correct={userAnswers.checkAnswer === answer} clicked={userAnswers}
+
+const Wrapper = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -20vw 0 0 -35vw;
+  width: 70vw;
+  height: 40vw;
+  border: 1px solid #50aa63;
+  border-radius: 10px;
+  color: #50aa63;
+  font-size: 1.75rem;
+
+  .container {
+    padding: 3% 9%;
+  }
+
+  .options {
+    padding: 1% 0;
+  }
+
+  .indicator {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    color: ${({ correct }) => (correct ? "#488FB1" : "#FF8080")};
+  }
+
+  .indicator .compareAnswer {
+    display: flex;
+    padding: 0 5%;
+    justify-content: space-between;
+  }
+
+  .indicator .compareAnswer div {
+    padding: 0 5%;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  button {
+    margin: 1% 0;
+    padding: 0 2%;
+    width: 95%;
+    height: 5vh;
+    font-size: 1.5rem;
+    color: ${({ correct, clicked }) =>
+      correct ? "#fff" : !correct && clicked ? "#fff" : "#50aa63"};
+    background-color: ${({ correct, clicked }) =>
+      correct ? "#488FB1" : !correct && clicked ? "#FF8080" : "#fff"};
+    border: ${({ correct, clicked }) =>
+      correct ? "none" : !correct && clicked ? "none" : "1px solid #50aa63"};
+    border-radius: 10px;
+    text-align: left;
+  }
+
+  button:hover:enabled {
+    color: #fff;
+    background-color: #50aa63;
+  }
+
+  button[disabled] {
+    opacity: ${({ correct, clicked }) =>
+      correct ? "none" : !correct && clicked ? "none" : "0.5"};
+  }
+`;
 
 export default Quiz;

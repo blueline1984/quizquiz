@@ -16,8 +16,9 @@ const App = () => {
 
   //퀴즈 정답여부 확인 함수
   const checkAnswer = (event) => {
+    console.log(event);
     //분리 가능
-    const checkedAnswer = event.target.innerHTML;
+    const checkedAnswer = event.target.value;
     const isCorrect = quiz[number].correct_answer === checkedAnswer;
     const answerObject = {
       question: quiz[number].question,
