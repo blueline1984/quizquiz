@@ -1,4 +1,4 @@
-export const NUMBER = [
+export const AMOUNT = [
   { value: "10", name: "10" },
   { value: "15", name: "15" },
   { value: "20", name: "20" },
