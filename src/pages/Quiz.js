@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useInterval from "../hooks/useInterval";
 import styled from "styled-components";
 
 const Quiz = ({
@@ -14,12 +16,23 @@ const Quiz = ({
   number,
   useAnswersArray,
   quiz,
+  timer,
+  setTimer,
 }) => {
+  const [delay, setDelay] = useState(1000);
+
+  useInterval(() => {
+    setTimer(timer + 1);
+  }, delay);
+
+  console.log("timer", timer);
+
   const navigate = useNavigate();
   const handleQuitQuiz = () => {
     navigate("/");
   };
   const moveOnToResultPage = () => {
+    // setDelay(null);
     navigate("/result");
   };
 

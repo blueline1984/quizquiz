@@ -8,6 +8,7 @@ const Main = ({
   setNumber,
   setUserAnswers,
   setCorrectAnswerNumber,
+  setTimer,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -33,6 +34,7 @@ const Main = ({
             setNumber={setNumber}
             setUserAnswers={setUserAnswers}
             setCorrectAnswerNumber={setCorrectAnswerNumber}
+            setTimer={setTimer}
           />
         )}
       </div>

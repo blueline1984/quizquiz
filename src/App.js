@@ -17,6 +17,7 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useLocalStorage("userAnswers", []);
   const [isOver, setIsOver] = useLocalStorage("isOver", false);
   const [isLoading, setIsLoading] = useLocalStorage("isLoading", false);
+  const [timer, setTimer] = useLocalStorage("timer", 0);
 
   console.log("score", correctAnswerNumber);
 
@@ -74,6 +75,7 @@ const App = () => {
             setNumber={setNumber}
             setUserAnswers={setUserAnswers}
             setCorrectAnswerNumber={setCorrectAnswerNumber}
+            setTimer={setTimer}
           />
         }
       ></Route>
@@ -93,6 +95,8 @@ const App = () => {
             number={number}
             useAnswersArray={userAnswers}
             quiz={quiz}
+            timer={timer}
+            setTimer={setTimer}
           />
         }
       ></Route>
