@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import ResultSection from "../components/ResultSection";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { chageTimer } from "../utils/utils";
@@ -12,6 +13,12 @@ const Result = ({ quiz, correctAnswerNumber }) => {
   const quizCategory = quiz[0].category;
   const [timer] = useLocalStorage("timer");
 
+  const navigate = useNavigate();
+
+  const moveOnToMain = () => {
+    navigate("/");
+  };
+
   return (
     <Container>
       <div className="category">{quizCategory}</div>
@@ -23,7 +30,7 @@ const Result = ({ quiz, correctAnswerNumber }) => {
         />
         <ResultSection icon={<RiBarChart2Line />} content={"Graph"} />
       </ResultSectionWrapper>
-      <button>Back To Main</button>
+      <button onClick={moveOnToMain}>Back To Main</button>
     </Container>
   );
 };

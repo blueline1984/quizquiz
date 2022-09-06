@@ -32,7 +32,7 @@ const Quiz = ({
     navigate("/");
   };
   const moveOnToResultPage = () => {
-    // setDelay(null);
+    setDelay(null);
     navigate("/result");
   };
 
