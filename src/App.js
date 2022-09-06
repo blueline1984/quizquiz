@@ -8,11 +8,17 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import "./App.css";
 
 const App = () => {
+  const [correctAnswerNumber, setCorrectAnswerNumber] = useLocalStorage(
+    "score-data",
+    0
+  );
   const [quiz, setQuiz] = useLocalStorage("quiz-data", []);
   const [number, setNumber] = useLocalStorage("number", 0);
   const [userAnswers, setUserAnswers] = useLocalStorage("userAnswers", []);
   const [isOver, setIsOver] = useLocalStorage("isOver", false);
   const [isLoading, setIsLoading] = useLocalStorage("isLoading", false);
+
+  console.log("score", correctAnswerNumber);
 
   //퀴즈 정답여부 확인 함수
   const checkAnswer = (event) => {
@@ -25,6 +31,9 @@ const App = () => {
       isCorrect,
       correctAnswer: quiz[number].correct_answer,
     };
+    if (isCorrect) {
+      setCorrectAnswerNumber((prevScore) => prevScore + 1);
+    }
 
     if (!isOver) {
       if (isCorrect) {
@@ -64,6 +73,7 @@ const App = () => {
             setIsLoading={setIsLoading}
             setNumber={setNumber}
             setUserAnswers={setUserAnswers}
+            setCorrectAnswerNumber={setCorrectAnswerNumber}
           />
         }
       ></Route>
@@ -88,7 +98,9 @@ const App = () => {
       ></Route>
       <Route
         path="/result"
-        element={<Result userAnswers={userAnswers} quiz={quiz} />}
+        element={
+          <Result quiz={quiz} correctAnswerNumber={correctAnswerNumber} />
+        }
       ></Route>
     </Routes>
   );
