@@ -23,8 +23,6 @@ const Quiz = ({
     navigate("/result");
   };
 
-  console.log(useAnswersArray);
-
   return (
     <Wrapper correct={userAnswers?.isCorrect}>
       <div className="container">

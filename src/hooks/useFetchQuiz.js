@@ -20,6 +20,10 @@ export const useFetchQuiz = (quizNumber, quizDifficulty, quizCategory) => {
               options: [...quizList.incorrect_answers].sort(
                 () => Math.random - 0.5
               ),
+              answers: [
+                ...question.incorrect_answers,
+                question.correct_answer,
+              ].sort(() => Math.random() - 0.5),
             };
           })
         );
