@@ -12,11 +12,9 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [isOver, setIsOver] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  console.log("userAnswers", userAnswers);
 
   //퀴즈 정답여부 확인 함수
   const checkAnswer = (event) => {
-    console.log(event);
     //분리 가능
     const checkedAnswer = event.target.value;
     const isCorrect = quiz[number].correct_answer === checkedAnswer;
@@ -84,6 +82,8 @@ const App = () => {
               isOver={isOver}
               isLoading={isLoading}
               number={number}
+              useAnswersArray={userAnswers}
+              quiz={quiz}
             />
           )
         }

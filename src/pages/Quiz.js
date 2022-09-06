@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Quiz = ({
@@ -11,8 +12,19 @@ const Quiz = ({
   isOver,
   isLoading,
   number,
+  useAnswersArray,
+  quiz,
 }) => {
-  console.log(userAnswers);
+  const navigate = useNavigate();
+  const handleQuitQuiz = () => {
+    navigate("/");
+  };
+  const moveOnToResultPage = () => {
+    navigate("/result");
+  };
+
+  console.log(useAnswersArray);
+
   return (
     <Wrapper correct={userAnswers?.isCorrect}>
       <div className="container">
@@ -52,15 +64,32 @@ const Quiz = ({
             </>
           ) : null}
         </div>
+      </div>
+      <div className="btn">
         {!isOver && !isLoading && number > 0 && (
-          <button onClick={prevQuiz}>Prev Quiz</button>
+          <button className="prev-btn" onClick={prevQuiz}>
+            {`<`}
+          </button>
         )}
-        {!isOver && !isLoading && userAnswers && (
-          // userAnswers &&
-          // number !== userAnswers.length - 1 &&
-          <button onClick={nextQuiz}>Next Quiz</button>
+        {useAnswersArray?.length !== quiz?.length ? (
+          !isOver &&
+          !isLoading &&
+          userAnswers && (
+            // userAnswers &&
+            // number !== userAnswers.length - 1 &&
+            <button className="next-btn" onClick={nextQuiz}>
+              {`>`}
+            </button>
+          )
+        ) : (
+          <button className="result-btn" onClick={moveOnToResultPage}>
+            Result
+          </button>
         )}
       </div>
+      <button className="quit-btn" onClick={handleQuitQuiz}>
+        Quit
+      </button>
     </Wrapper>
   );
 };
@@ -103,6 +132,72 @@ const Wrapper = styled.div`
 
   .indicator .compareAnswer div {
     padding: 0 5%;
+  }
+
+  .prev-btn {
+    left: 0%;
+    bottom: 50%;
+    margin: 2%;
+    position: absolute;
+    font-size: 2rem;
+    border: none;
+    color: #50aa63;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  .next-btn {
+    left: 94%;
+    bottom: 50%;
+    margin: 2%;
+    position: absolute;
+    font-size: 2rem;
+    border: none;
+    color: #50aa63;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  .result-btn {
+    position: absolute;
+    left: 75%;
+    top: 80%;
+    width: 11rem;
+    height: 3rem;
+    font-size: 1rem;
+    font-family: "Secular One", sans-serif;
+    color: #fff;
+    background-color: #50aa63;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .result-btn:hover {
+    color: #50aa63;
+    background-color: #fff;
+    border: 1px solid #50aa63;
+  }
+
+  .quit-btn {
+    position: absolute;
+    left: 45%;
+    top: 80%;
+    width: 7rem;
+    height: 3rem;
+    font-size: 1rem;
+    font-family: "Secular One", sans-serif;
+    color: #fff;
+    background-color: #50aa63;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .quit-btn:hover {
+    color: #50aa63;
+    background-color: #fff;
+    border: 1px solid #50aa63;
   }
 `;
 
