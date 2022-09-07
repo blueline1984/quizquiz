@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Main from "./pages/Main";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
@@ -96,6 +96,7 @@ const App = () => {
           <Result quiz={quiz} correctAnswerNumber={correctAnswerNumber} />
         }
       ></Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };
