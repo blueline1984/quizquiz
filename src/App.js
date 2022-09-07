@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Quiz from "./pages/Quiz";

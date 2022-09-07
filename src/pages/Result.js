@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import ResultSection from "../components/ResultSection";
 import Chart from "../components/Chart";
