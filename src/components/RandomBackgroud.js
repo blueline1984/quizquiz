@@ -58,9 +58,9 @@ const Wrapper = styled.div`
   }
 
   button {
-    position: absolute;
+    position: relative;
     left: 45%;
-    top: 80%;
+    top: 10%;
     width: 7rem;
     height: 3rem;
     font-size: 1rem;

@@ -25,8 +25,6 @@ const Quiz = ({
     setTimer(timer + 1);
   }, delay);
 
-  console.log("timer", timer);
-
   const navigate = useNavigate();
   const handleQuitQuiz = () => {
     navigate("/");
@@ -88,7 +86,7 @@ const Quiz = ({
                 value={answer}
                 onClick={checkAnswer}
               >
-                <span dangerouslySetInnerHTML={{ __html: answer }}></span>
+                <span dangerouslySetInnerHTML={{ __html: answer }} />
               </button>
             </ButtonWrapper>
           ))}
@@ -102,8 +100,16 @@ const Quiz = ({
                 <div>Wrong Answer!</div>
               )}
               <div className="compareAnswer">
-                <div>Your Answer: {userAnswers.checkedAnswer} </div>
-                <div>Correct Answer: {userAnswers.correctAnswer}</div>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `Your Answer: ${userAnswers.checkedAnswer}`,
+                  }}
+                />
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `Correct Answer: ${userAnswers.correctAnswer}`,
+                  }}
+                />
               </div>
             </>
           ) : null}
@@ -115,20 +121,18 @@ const Quiz = ({
             {`<`}
           </button>
         )}
-        {useAnswersArray?.length !== quiz?.length ? (
+        {quizNumber === quiz?.length ? (
+          <button className="result-btn" onClick={moveOnToResultPage}>
+            Result
+          </button>
+        ) : (
           !isOver &&
           !isLoading &&
           userAnswers && (
-            // userAnswers &&
-            // number !== userAnswers.length - 1 &&
             <button className="next-btn" onClick={nextQuiz}>
               {`>`}
             </button>
           )
-        ) : (
-          <button className="result-btn" onClick={moveOnToResultPage}>
-            Result
-          </button>
         )}
       </div>
       <button className="quit-btn" onClick={handleQuitQuiz}>
@@ -138,13 +142,11 @@ const Quiz = ({
   );
 };
 
-//correct={userAnswers.checkAnswer === answer} clicked={userAnswers}
-
 const Wrapper = styled.div`
   position: absolute;
-  left: 20%;
+  left: 15%;
   top: 10%;
-  width: 1400px;
+  width: 1600px;
   height: 800px;
   border: 1px solid #50aa63;
   border-radius: 10px;
@@ -156,13 +158,17 @@ const Wrapper = styled.div`
     padding: 3% 9%;
   }
 
+  .question {
+    height: 50px;
+  }
+
   .options {
     padding: 1% 0;
   }
 
   .indicator {
+    position: absolute;
     display: flex;
-    justify-content: space-between;
     font-size: 1.5rem;
     white-space: nowrap;
     color: ${({ correct }) => (correct ? "#488FB1" : "#FF8080")};
@@ -170,8 +176,7 @@ const Wrapper = styled.div`
 
   .indicator .compareAnswer {
     display: flex;
-    padding: 0 5%;
-    justify-content: space-between;
+    padding: 0 10%;
   }
 
   .indicator .compareAnswer div {

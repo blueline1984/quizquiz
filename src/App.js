@@ -19,11 +19,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useLocalStorage("isLoading", false);
   const [timer, setTimer] = useLocalStorage("timer", 0);
 
-  console.log("score", correctAnswerNumber);
-
-  //퀴즈 정답여부 확인 함수
   const checkAnswer = (event) => {
-    //분리 가능
     const checkedAnswer = event.target.value;
     const isCorrect = quiz[number].correct_answer === checkedAnswer;
     const answerObject = {
@@ -37,11 +33,6 @@ const App = () => {
     }
 
     if (!isOver) {
-      if (isCorrect) {
-        console.log("correct");
-      } else {
-        console.log("wrong");
-      }
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
@@ -50,7 +41,6 @@ const App = () => {
 
     if (nextQuizNumber === quiz.length) {
       setIsOver(true);
-      console.log("문제 끝");
     } else {
       setNumber(nextQuizNumber);
     }
