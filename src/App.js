@@ -3,15 +3,23 @@ import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 import "./App.css";
 
 const App = () => {
-  const [quiz, setQuiz] = useState([]);
-  const [number, setNumber] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]);
-  const [isOver, setIsOver] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [correctAnswerNumber, setCorrectAnswerNumber] = useLocalStorage(
+    "score-data",
+    0
+  );
+  const [quiz, setQuiz] = useLocalStorage("quiz-data", []);
+  const [number, setNumber] = useLocalStorage("number", 0);
+  const [userAnswers, setUserAnswers] = useLocalStorage("userAnswers", []);
+  const [isOver, setIsOver] = useLocalStorage("isOver", false);
+  const [isLoading, setIsLoading] = useLocalStorage("isLoading", false);
+  const [timer, setTimer] = useLocalStorage("timer", 0);
+
+  console.log("score", correctAnswerNumber);
 
   //퀴즈 정답여부 확인 함수
   const checkAnswer = (event) => {
@@ -24,6 +32,9 @@ const App = () => {
       isCorrect,
       correctAnswer: quiz[number].correct_answer,
     };
+    if (isCorrect) {
+      setCorrectAnswerNumber((prevScore) => prevScore + 1);
+    }
 
     if (!isOver) {
       if (isCorrect) {
@@ -63,32 +74,38 @@ const App = () => {
             setIsLoading={setIsLoading}
             setNumber={setNumber}
             setUserAnswers={setUserAnswers}
+            setCorrectAnswerNumber={setCorrectAnswerNumber}
+            setTimer={setTimer}
           />
         }
       ></Route>
       <Route
         path="/quiz"
         element={
-          !isLoading &&
-          !isOver && (
-            <Quiz
-              quizNumber={number + 1}
-              question={quiz[number].question}
-              answers={quiz[number].answers}
-              userAnswers={userAnswers ? userAnswers[number] : undefined}
-              checkAnswer={checkAnswer}
-              prevQuiz={prevQuiz}
-              nextQuiz={nextQuiz}
-              isOver={isOver}
-              isLoading={isLoading}
-              number={number}
-              useAnswersArray={userAnswers}
-              quiz={quiz}
-            />
-          )
+          <Quiz
+            quizNumber={number + 1}
+            question={quiz[number]?.question}
+            answers={quiz[number]?.answers}
+            userAnswers={userAnswers ? userAnswers[number] : undefined}
+            checkAnswer={checkAnswer}
+            prevQuiz={prevQuiz}
+            nextQuiz={nextQuiz}
+            isOver={isOver}
+            isLoading={isLoading}
+            number={number}
+            useAnswersArray={userAnswers}
+            quiz={quiz}
+            timer={timer}
+            setTimer={setTimer}
+          />
         }
       ></Route>
-      <Route path="/result" element={<Result />}></Route>
+      <Route
+        path="/result"
+        element={
+          <Result quiz={quiz} correctAnswerNumber={correctAnswerNumber} />
+        }
+      ></Route>
     </Routes>
   );
 };

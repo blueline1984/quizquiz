@@ -7,6 +7,8 @@ const Main = ({
   setIsLoading,
   setNumber,
   setUserAnswers,
+  setCorrectAnswerNumber,
+  setTimer,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,6 +33,8 @@ const Main = ({
             setIsLoading={setIsLoading}
             setNumber={setNumber}
             setUserAnswers={setUserAnswers}
+            setCorrectAnswerNumber={setCorrectAnswerNumber}
+            setTimer={setTimer}
           />
         )}
       </div>
@@ -38,17 +42,17 @@ const Main = ({
         <img
           className="question-img-1"
           alt="question-1"
-          src="image/question1.png"
+          src="images/question1.png"
         />
         <img
           className="question-img-2"
           alt="question-2"
-          src="image/question2.png"
+          src="images/question2.png"
         />
         <img
           className="question-img-3"
           alt="question-3"
-          src="image/question3.png"
+          src="images/question3.png"
         />
       </div>
     </div>

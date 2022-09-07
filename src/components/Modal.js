@@ -16,6 +16,8 @@ const Modal = ({
   setIsLoading,
   setNumber,
   setUserAnswers,
+  setCorrectAnswerNumber,
+  setTimer,
 }) => {
   const [amount, setAmount] = useState("10");
   const [difficulty, setDifficulty] = useState("easy");
@@ -40,6 +42,8 @@ const Modal = ({
     setQuiz(newQuiz);
     setUserAnswers([]);
     setNumber(0);
+    setCorrectAnswerNumber(0);
+    setTimer(0);
     setIsLoading(false);
     navigate("/quiz");
   };
