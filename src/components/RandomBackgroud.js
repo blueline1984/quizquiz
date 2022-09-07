@@ -48,7 +48,6 @@ const Wrapper = styled.div`
   padding: 3% 2%;
   width: auto;
   height: 100vh;
-  border: 3px solid red;
   font-size: 3rem;
   color: #50aa63;
   overflow: hidden;

@@ -55,7 +55,7 @@ const Quiz = ({
         style={{
           position: "absolute",
           top: "300px",
-          left: "-10%",
+          left: "-30%",
           overflow: "hidden",
           rotate: "30deg",
         }}
