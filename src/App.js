@@ -4,8 +4,6 @@ import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import useLocalStorage from "./hooks/useLocalStorage";
 
-import "./App.css";
-
 const App = () => {
   const [correctAnswerNumber, setCorrectAnswerNumber] = useLocalStorage(
     "correct-answer-data",

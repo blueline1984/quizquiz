@@ -112,12 +112,8 @@ const ModalBody = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 1rem;
-    font-family: "Secular One", sans-serif;
-    color: #fff;
-    background-color: #50aa63;
     border-radius: 10px;
     border: none;
-    cursor: pointer;
   }
 
   button:hover {

@@ -31,7 +31,6 @@ const QuizSelectBoxWrapper = styled.div`
   padding-bottom: 30px;
   align-items: center;
   color: #50aa63;
-  font-family: "Secular One", sans-serif;
 
   label {
     position: absolute;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useInterval from "../hooks/useInterval";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import styled from "styled-components";
 
 const Quiz = ({
@@ -117,7 +118,7 @@ const Quiz = ({
       <div className="btn">
         {!isOver && !isLoading && number > 0 && (
           <button className="prev-btn" onClick={moveToPrevQuiz}>
-            {`<`}
+            {<MdArrowBackIos />}
           </button>
         )}
         {quizNumber === quiz?.length ? (
@@ -129,7 +130,7 @@ const Quiz = ({
           !isLoading &&
           userAnswers && (
             <button className="next-btn" onClick={moveToNextQuiz}>
-              {`>`}
+              {<MdArrowForwardIos />}
             </button>
           )
         )}
@@ -191,7 +192,6 @@ const QuizWrapper = styled.div`
     border: none;
     color: #50aa63;
     background-color: #fff;
-    cursor: pointer;
   }
 
   .next-btn {
@@ -203,7 +203,6 @@ const QuizWrapper = styled.div`
     border: none;
     color: #50aa63;
     background-color: #fff;
-    cursor: pointer;
   }
 
   .result-btn {
@@ -213,12 +212,8 @@ const QuizWrapper = styled.div`
     width: 11rem;
     height: 3rem;
     font-size: 1rem;
-    font-family: "Secular One", sans-serif;
-    color: #fff;
-    background-color: #50aa63;
     border-radius: 10px;
     border: none;
-    cursor: pointer;
   }
 
   .result-btn:hover {
@@ -234,12 +229,8 @@ const QuizWrapper = styled.div`
     width: 7rem;
     height: 3rem;
     font-size: 1rem;
-    font-family: "Secular One", sans-serif;
-    color: #fff;
-    background-color: #50aa63;
     border-radius: 10px;
     border: none;
-    cursor: pointer;
   }
 
   .quit-btn:hover {
