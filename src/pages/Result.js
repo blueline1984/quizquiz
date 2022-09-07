@@ -1,13 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ResultSection from "../components/ResultSection";
+import Chart from "../components/Chart";
+import RandomBackgroud from "../components/RandomBackgroud";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { chageTimer } from "../utils/utils";
 import { BiTime } from "react-icons/bi";
 import { ImCheckmark2 } from "react-icons/im";
 import { RiBarChart2Line } from "react-icons/ri";
 import styled from "styled-components";
-import Chart from "../components/Chart";
 
 const Result = ({ quiz, correctAnswerNumber }) => {
   const quizTotalNumber = quiz.length;
@@ -21,7 +22,7 @@ const Result = ({ quiz, correctAnswerNumber }) => {
   };
 
   return (
-    <Container>
+    <RandomBackgroud>
       <div className="category">{quizCategory}</div>
       <ResultSectionWrapper>
         <ResultSection icon={<BiTime />} content={chageTimer(timer)} />
@@ -37,7 +38,7 @@ const Result = ({ quiz, correctAnswerNumber }) => {
         />
       </ResultSectionWrapper>
       <button onClick={moveOnToMain}>Back To Main</button>
-    </Container>
+    </RandomBackgroud>
   );
 };
 

@@ -38,6 +38,39 @@ const Quiz = ({
 
   return (
     <Wrapper correct={userAnswers?.isCorrect}>
+      <img
+        src="/images/question1.png"
+        alt="question1"
+        style={{
+          position: "absolute",
+          top: "-200px",
+          left: "50%",
+          overflow: "hidden",
+          rotate: "140deg",
+        }}
+      />
+      <img
+        src="/images/question2.png"
+        alt="question2"
+        style={{
+          position: "absolute",
+          top: "300px",
+          left: "-10%",
+          overflow: "hidden",
+          rotate: "30deg",
+        }}
+      />
+      <img
+        src="/images/question3.png"
+        alt="question3"
+        style={{
+          position: "absolute",
+          top: "500px",
+          left: "80%",
+          overflow: "hidden",
+          rotate: "300deg",
+        }}
+      />
       <div className="container">
         <p
           className="question"
@@ -109,15 +142,15 @@ const Quiz = ({
 
 const Wrapper = styled.div`
   position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -20vw 0 0 -35vw;
-  width: 70vw;
-  height: 40vw;
+  left: 20%;
+  top: 10%;
+  width: 1400px;
+  height: 800px;
   border: 1px solid #50aa63;
   border-radius: 10px;
   color: #50aa63;
   font-size: 1.75rem;
+  background-color: #fff;
 
   .container {
     padding: 3% 9%;
@@ -209,6 +242,10 @@ const Wrapper = styled.div`
     color: #50aa63;
     background-color: #fff;
     border: 1px solid #50aa63;
+  }
+
+  img {
+    z-index: -1000;
   }
 `;
 
