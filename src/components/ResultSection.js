@@ -26,14 +26,20 @@ const Wrapper = styled.div`
 
   .icon {
     padding: 3% 0 0 0;
-    border: 1px solid blue;
   }
 
   .content {
     position: relative;
-    top: 20%;
-    border: 1px solid blue;
+    display: flex;
+    height: 70%;
     font-size: 6rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
   }
 `;
 

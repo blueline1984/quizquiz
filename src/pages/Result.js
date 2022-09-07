@@ -7,6 +7,7 @@ import { BiTime } from "react-icons/bi";
 import { ImCheckmark2 } from "react-icons/im";
 import { RiBarChart2Line } from "react-icons/ri";
 import styled from "styled-components";
+import Chart from "../components/Chart";
 
 const Result = ({ quiz, correctAnswerNumber }) => {
   const quizTotalNumber = quiz.length;
@@ -28,7 +29,12 @@ const Result = ({ quiz, correctAnswerNumber }) => {
           icon={<ImCheckmark2 />}
           content={`${correctAnswerNumber} / ${quizTotalNumber}`}
         />
-        <ResultSection icon={<RiBarChart2Line />} content={"Graph"} />
+        <ResultSection
+          icon={<RiBarChart2Line />}
+          content={
+            <Chart quiz={quiz} correctAnswerNumber={correctAnswerNumber} />
+          }
+        />
       </ResultSectionWrapper>
       <button onClick={moveOnToMain}>Back To Main</button>
     </Container>
@@ -44,7 +50,6 @@ const Container = styled.div`
   color: #50aa63;
 
   .category {
-    border: 1px solid red;
     margin: 1%;
     text-decoration: underline;
   }
