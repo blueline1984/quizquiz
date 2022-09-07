@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 
-function RandomBackgroud({ children }) {
+const Backgroud = ({ children }) => {
   return (
-    <Wrapper>
+    <BackGroundWrapper>
       <div style={{ position: "relative" }}>
         <img
           src="/images/question1.png"
@@ -40,11 +39,11 @@ function RandomBackgroud({ children }) {
         />
       </div>
       {children}
-    </Wrapper>
+    </BackGroundWrapper>
   );
-}
+};
 
-const Wrapper = styled.div`
+const BackGroundWrapper = styled.div`
   padding: 3% 2%;
   width: auto;
   height: 100vh;
@@ -58,18 +57,14 @@ const Wrapper = styled.div`
   }
 
   button {
-    position: absolute;
+    position: relative;
     left: 45%;
-    top: 80%;
+    top: 10%;
     width: 7rem;
     height: 3rem;
     font-size: 1rem;
-    font-family: "Secular One", sans-serif;
-    color: #fff;
-    background-color: #50aa63;
     border-radius: 10px;
     border: none;
-    cursor: pointer;
   }
 
   button:hover {
@@ -85,4 +80,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default RandomBackgroud;
+export default Backgroud;

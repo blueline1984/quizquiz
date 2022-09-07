@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const QuizSelectBox = ({ label, options, hadleSelectBox }) => {
   return (
-    <Wrapper>
+    <QuizSelectBoxWrapper>
       <label htmlFor={label}>{label}</label>
       <select
         id={label}
@@ -16,11 +16,11 @@ const QuizSelectBox = ({ label, options, hadleSelectBox }) => {
           </option>
         ))}
       </select>
-    </Wrapper>
+    </QuizSelectBoxWrapper>
   );
 };
 
-const Wrapper = styled.div`
+const QuizSelectBoxWrapper = styled.div`
   display: flex;
   position: relative;
   width: 15em;
@@ -31,7 +31,6 @@ const Wrapper = styled.div`
   padding-bottom: 30px;
   align-items: center;
   color: #50aa63;
-  font-family: "Secular One", sans-serif;
 
   label {
     position: absolute;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useInterval from "../hooks/useInterval";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import styled from "styled-components";
 
 const Quiz = ({
@@ -9,35 +10,33 @@ const Quiz = ({
   answers,
   userAnswers,
   checkAnswer,
-  nextQuiz,
-  prevQuiz,
+  moveToNextQuiz,
+  moveToPrevQuiz,
   isOver,
   isLoading,
   number,
-  useAnswersArray,
   quiz,
   timer,
   setTimer,
+  useAnswersArray,
 }) => {
   const [delay, setDelay] = useState(1000);
+  const navigate = useNavigate();
 
   useInterval(() => {
     setTimer(timer + 1);
   }, delay);
 
-  console.log("timer", timer);
-
-  const navigate = useNavigate();
   const handleQuitQuiz = () => {
     navigate("/");
   };
-  const moveOnToResultPage = () => {
+  const moveToResultPage = () => {
     setDelay(null);
     navigate("/result");
   };
 
   return (
-    <Wrapper correct={userAnswers?.isCorrect}>
+    <QuizWrapper correct={userAnswers?.isCorrect}>
       <img
         src="/images/question1.png"
         alt="question1"
@@ -88,7 +87,7 @@ const Quiz = ({
                 value={answer}
                 onClick={checkAnswer}
               >
-                <span dangerouslySetInnerHTML={{ __html: answer }}></span>
+                <span dangerouslySetInnerHTML={{ __html: answer }} />
               </button>
             </ButtonWrapper>
           ))}
@@ -101,9 +100,17 @@ const Quiz = ({
               ) : (
                 <div>Wrong Answer!</div>
               )}
-              <div className="compareAnswer">
-                <div>Your Answer: {userAnswers.checkedAnswer} </div>
-                <div>Correct Answer: {userAnswers.correctAnswer}</div>
+              <div className="answer-result">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `Your Answer: ${userAnswers.checkedAnswer}`,
+                  }}
+                />
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `Correct Answer: ${userAnswers.correctAnswer}`,
+                  }}
+                />
               </div>
             </>
           ) : null}
@@ -111,40 +118,37 @@ const Quiz = ({
       </div>
       <div className="btn">
         {!isOver && !isLoading && number > 0 && (
-          <button className="prev-btn" onClick={prevQuiz}>
-            {`<`}
+          <button className="prev-btn" onClick={moveToPrevQuiz}>
+            {<MdArrowBackIos />}
           </button>
         )}
-        {useAnswersArray?.length !== quiz?.length ? (
+        {useAnswersArray?.length === quizNumber &&
+        useAnswersArray?.length === quiz?.length ? (
+          <button className="result-btn" onClick={moveToResultPage}>
+            Result
+          </button>
+        ) : (
           !isOver &&
           !isLoading &&
           userAnswers && (
-            // userAnswers &&
-            // number !== userAnswers.length - 1 &&
-            <button className="next-btn" onClick={nextQuiz}>
-              {`>`}
+            <button className="next-btn" onClick={moveToNextQuiz}>
+              {<MdArrowForwardIos />}
             </button>
           )
-        ) : (
-          <button className="result-btn" onClick={moveOnToResultPage}>
-            Result
-          </button>
         )}
       </div>
       <button className="quit-btn" onClick={handleQuitQuiz}>
         Quit
       </button>
-    </Wrapper>
+    </QuizWrapper>
   );
 };
 
-//correct={userAnswers.checkAnswer === answer} clicked={userAnswers}
-
-const Wrapper = styled.div`
+const QuizWrapper = styled.div`
   position: absolute;
-  left: 20%;
+  left: 15%;
   top: 10%;
-  width: 1400px;
+  width: 1600px;
   height: 800px;
   border: 1px solid #50aa63;
   border-radius: 10px;
@@ -156,25 +160,28 @@ const Wrapper = styled.div`
     padding: 3% 9%;
   }
 
+  .question {
+    height: 50px;
+  }
+
   .options {
     padding: 1% 0;
   }
 
   .indicator {
+    position: absolute;
     display: flex;
-    justify-content: space-between;
     font-size: 1.5rem;
     white-space: nowrap;
     color: ${({ correct }) => (correct ? "#488FB1" : "#FF8080")};
   }
 
-  .indicator .compareAnswer {
+  .indicator .answer-result {
     display: flex;
-    padding: 0 5%;
-    justify-content: space-between;
+    padding: 0 10%;
   }
 
-  .indicator .compareAnswer div {
+  .indicator .answer-result div {
     padding: 0 5%;
   }
 
@@ -187,7 +194,6 @@ const Wrapper = styled.div`
     border: none;
     color: #50aa63;
     background-color: #fff;
-    cursor: pointer;
   }
 
   .next-btn {
@@ -199,7 +205,6 @@ const Wrapper = styled.div`
     border: none;
     color: #50aa63;
     background-color: #fff;
-    cursor: pointer;
   }
 
   .result-btn {
@@ -209,12 +214,8 @@ const Wrapper = styled.div`
     width: 11rem;
     height: 3rem;
     font-size: 1rem;
-    font-family: "Secular One", sans-serif;
-    color: #fff;
-    background-color: #50aa63;
     border-radius: 10px;
     border: none;
-    cursor: pointer;
   }
 
   .result-btn:hover {
@@ -230,12 +231,8 @@ const Wrapper = styled.div`
     width: 7rem;
     height: 3rem;
     font-size: 1rem;
-    font-family: "Secular One", sans-serif;
-    color: #fff;
-    background-color: #50aa63;
     border-radius: 10px;
     border: none;
-    cursor: pointer;
   }
 
   .quit-btn:hover {

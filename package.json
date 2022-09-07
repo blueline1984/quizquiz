@@ -1,6 +1,15 @@
 {
   "name": "quizquiz",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blueline1984/quizquiz"
+  },
+  "author": {
+    "name": "white",
+    "email": "blueline1318@gmail.com",
+    "url": "https://whitebeen.tistory.com/"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

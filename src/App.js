@@ -1,29 +1,25 @@
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import useLocalStorage from "./hooks/useLocalStorage";
 
-import "./App.css";
-
 const App = () => {
   const [correctAnswerNumber, setCorrectAnswerNumber] = useLocalStorage(
-    "score-data",
+    "correct-answer-data",
     0
   );
   const [quiz, setQuiz] = useLocalStorage("quiz-data", []);
-  const [number, setNumber] = useLocalStorage("number", 0);
-  const [userAnswers, setUserAnswers] = useLocalStorage("userAnswers", []);
-  const [isOver, setIsOver] = useLocalStorage("isOver", false);
-  const [isLoading, setIsLoading] = useLocalStorage("isLoading", false);
-  const [timer, setTimer] = useLocalStorage("timer", 0);
+  const [number, setNumber] = useLocalStorage("quiz-number-data", 0);
+  const [userAnswers, setUserAnswers] = useLocalStorage(
+    "user-answers-data",
+    []
+  );
+  const [isOver, setIsOver] = useLocalStorage("isOver-data", false);
+  const [isLoading, setIsLoading] = useLocalStorage("isLoading-data", false);
+  const [timer, setTimer] = useLocalStorage("timer-data", 0);
 
-  console.log("score", correctAnswerNumber);
-
-  //퀴즈 정답여부 확인 함수
   const checkAnswer = (event) => {
-    //분리 가능
     const checkedAnswer = event.target.value;
     const isCorrect = quiz[number].correct_answer === checkedAnswer;
     const answerObject = {
@@ -37,25 +33,19 @@ const App = () => {
     }
 
     if (!isOver) {
-      if (isCorrect) {
-        console.log("correct");
-      } else {
-        console.log("wrong");
-      }
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
-  const nextQuiz = () => {
+  const moveToNextQuiz = () => {
     const nextQuizNumber = number + 1;
 
     if (nextQuizNumber === quiz.length) {
       setIsOver(true);
-      console.log("문제 끝");
     } else {
       setNumber(nextQuizNumber);
     }
   };
-  const prevQuiz = () => {
+  const moveToPrevQuiz = () => {
     const prevQuizNumber = number - 1;
 
     if (prevQuizNumber >= 0) {
@@ -88,8 +78,8 @@ const App = () => {
             answers={quiz[number]?.answers}
             userAnswers={userAnswers ? userAnswers[number] : undefined}
             checkAnswer={checkAnswer}
-            prevQuiz={prevQuiz}
-            nextQuiz={nextQuiz}
+            moveToPrevQuiz={moveToPrevQuiz}
+            moveToNextQuiz={moveToNextQuiz}
             isOver={isOver}
             isLoading={isLoading}
             number={number}

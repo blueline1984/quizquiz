@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import Portal from "../Potal";
 import QuizSelectBox from "../components/QuizSelectBox";
-import { AMOUNT, CATEGORY, DIFFICULTY } from "../config/quizSelect";
+import { AMOUNT, CATEGORY, DIFFICULTY } from "../config/quizSelectOption";
 import { fetchQuizData } from "../api/api";
+import styled from "styled-components";
 
 const Modal = ({
   message,
@@ -112,12 +112,8 @@ const ModalBody = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 1rem;
-    font-family: "Secular One", sans-serif;
-    color: #fff;
-    background-color: #50aa63;
     border-radius: 10px;
     border: none;
-    cursor: pointer;
   }
 
   button:hover {

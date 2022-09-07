@@ -1,16 +1,15 @@
-import React from "react";
 import styled from "styled-components";
 
-function ResultSection({ icon, content }) {
+const ResultSection = ({ icon, content }) => {
   return (
-    <Wrapper>
+    <ResultSectionWrapper>
       <div className="icon">{icon}</div>
       <div className="content">{content}</div>
-    </Wrapper>
+    </ResultSectionWrapper>
   );
-}
+};
 
-const Wrapper = styled.div`
+const ResultSectionWrapper = styled.div`
   position: relative;
   margin: 1%;
   width: 500px;
