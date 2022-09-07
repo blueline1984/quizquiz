@@ -18,6 +18,7 @@ const Quiz = ({
   quiz,
   timer,
   setTimer,
+  useAnswersArray,
 }) => {
   const [delay, setDelay] = useState(1000);
   const navigate = useNavigate();
@@ -121,7 +122,8 @@ const Quiz = ({
             {<MdArrowBackIos />}
           </button>
         )}
-        {quizNumber === quiz?.length ? (
+        {useAnswersArray?.length === quizNumber &&
+        useAnswersArray?.length === quiz?.length ? (
           <button className="result-btn" onClick={moveToResultPage}>
             Result
           </button>
