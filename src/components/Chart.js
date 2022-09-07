@@ -2,7 +2,7 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-function Chart({ quiz, correctAnswerNumber }) {
+const Chart = ({ quiz, correctAnswerNumber }) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const correctPercentage = (correctAnswerNumber / quiz.length) * 100 + "%";
   const data = {
@@ -65,6 +65,6 @@ function Chart({ quiz, correctAnswerNumber }) {
   ];
 
   return <Doughnut data={data} options={options} plugins={plugins} />;
-}
+};
 
 export default Chart;

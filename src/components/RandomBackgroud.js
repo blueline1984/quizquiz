@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function RandomBackgroud({ children }) {
+const RandomBackgroud = ({ children }) => {
   return (
     <Wrapper>
       <div style={{ position: "relative" }}>
@@ -42,7 +42,7 @@ function RandomBackgroud({ children }) {
       {children}
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.div`
   padding: 3% 2%;

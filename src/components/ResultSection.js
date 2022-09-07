@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-function ResultSection({ icon, content }) {
+const ResultSection = ({ icon, content }) => {
   return (
     <ResultSectionWrapper>
       <div className="icon">{icon}</div>
       <div className="content">{content}</div>
     </ResultSectionWrapper>
   );
-}
+};
 
 const ResultSectionWrapper = styled.div`
   position: relative;
