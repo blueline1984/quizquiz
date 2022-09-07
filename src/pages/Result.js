@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import ResultSection from "../components/ResultSection";
 import Chart from "../components/Chart";
-import RandomBackgroud from "../components/RandomBackgroud";
+import Backgroud from "../components/Backgroud";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { chageTimer } from "../utils/utils";
 import { BiTime } from "react-icons/bi";
@@ -21,7 +21,7 @@ const Result = ({ quiz, correctAnswerNumber }) => {
   };
 
   return (
-    <RandomBackgroud>
+    <Backgroud>
       <div className="category">{quizCategory}</div>
       <ResultSectionWrapper>
         <ResultSection icon={<BiTime />} content={chageTimer(timer)} />
@@ -37,7 +37,7 @@ const Result = ({ quiz, correctAnswerNumber }) => {
         />
       </ResultSectionWrapper>
       <button onClick={moveToMain}>Back To Main</button>
-    </RandomBackgroud>
+    </Backgroud>
   );
 };
 
