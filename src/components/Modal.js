@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Portal from "../Potal";
 import QuizSelectBox from "../components/QuizSelectBox";
-import { AMOUNT, CATEGORY, DIFFICULTY } from "../config/quizSelect";
+import { AMOUNT, CATEGORY, DIFFICULTY } from "../config/quizSelectOption";
 import { fetchQuizData } from "../api/api";
 
 const Modal = ({

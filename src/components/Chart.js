@@ -46,13 +46,13 @@ const Chart = ({ quiz, correctAnswerNumber }) => {
   const plugins = [
     {
       beforeDraw: function (chart) {
-        let width = chart.width;
-        let height = chart.height;
-        let ctx = chart.ctx;
-        let fontSize = (height / 500).toFixed(2);
-        let text = correctPercentage;
-        let textX = Math.round((width - ctx.measureText(text).width) / 2);
-        let textY = height / 2;
+        const width = chart.width;
+        const height = chart.height;
+        const ctx = chart.ctx;
+        const fontSize = (height / 500).toFixed(2);
+        const text = correctPercentage;
+        const textX = Math.round((width - ctx.measureText(text).width) / 2);
+        const textY = height / 2;
 
         ctx.restore();
         ctx.font = fontSize + "em Secular One";

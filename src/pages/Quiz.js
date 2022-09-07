@@ -9,33 +9,32 @@ const Quiz = ({
   answers,
   userAnswers,
   checkAnswer,
-  nextQuiz,
-  prevQuiz,
+  moveToNextQuiz,
+  moveToPrevQuiz,
   isOver,
   isLoading,
   number,
-  useAnswersArray,
   quiz,
   timer,
   setTimer,
 }) => {
   const [delay, setDelay] = useState(1000);
+  const navigate = useNavigate();
 
   useInterval(() => {
     setTimer(timer + 1);
   }, delay);
 
-  const navigate = useNavigate();
   const handleQuitQuiz = () => {
     navigate("/");
   };
-  const moveOnToResultPage = () => {
+  const moveToResultPage = () => {
     setDelay(null);
     navigate("/result");
   };
 
   return (
-    <Wrapper correct={userAnswers?.isCorrect}>
+    <QuizWrapper correct={userAnswers?.isCorrect}>
       <img
         src="/images/question1.png"
         alt="question1"
@@ -99,7 +98,7 @@ const Quiz = ({
               ) : (
                 <div>Wrong Answer!</div>
               )}
-              <div className="compareAnswer">
+              <div className="answer-result">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: `Your Answer: ${userAnswers.checkedAnswer}`,
@@ -117,19 +116,19 @@ const Quiz = ({
       </div>
       <div className="btn">
         {!isOver && !isLoading && number > 0 && (
-          <button className="prev-btn" onClick={prevQuiz}>
+          <button className="prev-btn" onClick={moveToPrevQuiz}>
             {`<`}
           </button>
         )}
         {quizNumber === quiz?.length ? (
-          <button className="result-btn" onClick={moveOnToResultPage}>
+          <button className="result-btn" onClick={moveToResultPage}>
             Result
           </button>
         ) : (
           !isOver &&
           !isLoading &&
           userAnswers && (
-            <button className="next-btn" onClick={nextQuiz}>
+            <button className="next-btn" onClick={moveToNextQuiz}>
               {`>`}
             </button>
           )
@@ -138,11 +137,11 @@ const Quiz = ({
       <button className="quit-btn" onClick={handleQuitQuiz}>
         Quit
       </button>
-    </Wrapper>
+    </QuizWrapper>
   );
 };
 
-const Wrapper = styled.div`
+const QuizWrapper = styled.div`
   position: absolute;
   left: 15%;
   top: 10%;
@@ -174,12 +173,12 @@ const Wrapper = styled.div`
     color: ${({ correct }) => (correct ? "#488FB1" : "#FF8080")};
   }
 
-  .indicator .compareAnswer {
+  .indicator .answer-result {
     display: flex;
     padding: 0 10%;
   }
 
-  .indicator .compareAnswer div {
+  .indicator .answer-result div {
     padding: 0 5%;
   }
 

@@ -13,11 +13,11 @@ import styled from "styled-components";
 const Result = ({ quiz, correctAnswerNumber }) => {
   const quizTotalNumber = quiz.length;
   const quizCategory = quiz[0].category;
-  const [timer] = useLocalStorage("timer");
+  const [timer] = useLocalStorage("timer-data");
 
   const navigate = useNavigate();
 
-  const moveOnToMain = () => {
+  const moveToMain = () => {
     navigate("/");
   };
 
@@ -37,45 +37,10 @@ const Result = ({ quiz, correctAnswerNumber }) => {
           }
         />
       </ResultSectionWrapper>
-      <button onClick={moveOnToMain}>Back To Main</button>
+      <button onClick={moveToMain}>Back To Main</button>
     </RandomBackgroud>
   );
 };
-
-const Container = styled.div`
-  padding: 3% 2%;
-  width: auto;
-  height: 100vh;
-  border: 3px solid red;
-  font-size: 3rem;
-  color: #50aa63;
-
-  .category {
-    margin: 1%;
-    text-decoration: underline;
-  }
-
-  button {
-    position: absolute;
-    left: 45%;
-    top: 80%;
-    width: 7rem;
-    height: 3rem;
-    font-size: 1rem;
-    font-family: "Secular One", sans-serif;
-    color: #fff;
-    background-color: #50aa63;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-  }
-
-  button:hover {
-    color: #50aa63;
-    background-color: #fff;
-    border: 1px solid #50aa63;
-  }
-`;
 
 const ResultSectionWrapper = styled.div`
   display: flex;
