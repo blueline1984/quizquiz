@@ -44,16 +44,19 @@ const Main = ({
           className="question-img-1"
           alt="question-1"
           src="images/question1.png"
+          data-testid="image-1"
         />
         <img
           className="question-img-2"
           alt="question-2"
           src="images/question2.png"
+          data-testid="image-2"
         />
         <img
           className="question-img-3"
           alt="question-3"
           src="images/question3.png"
+          data-testid="image-3"
         />
       </QuestionWrapper>
     </div>
