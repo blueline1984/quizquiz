@@ -3,7 +3,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 const Chart = ({ quiz, correctAnswerNumber }) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const correctPercentage = (correctAnswerNumber / quiz.length) * 100 + "%";
+  const correctPercentage =
+    Math.floor((correctAnswerNumber / quiz.length) * 100) + "%";
   const data = {
     labels: ["Correct", "Wrong"],
     datasets: [

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Backgroud = ({ children }) => {
+const Background = ({ children }) => {
   return (
     <BackGroundWrapper>
       <div style={{ position: "relative" }}>
@@ -80,4 +80,4 @@ const BackGroundWrapper = styled.div`
   }
 `;
 
-export default Backgroud;
+export default Background;

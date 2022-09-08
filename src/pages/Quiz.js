@@ -76,7 +76,7 @@ const Quiz = ({
           dangerouslySetInnerHTML={{ __html: `Q${quizNumber}. ${question}` }}
         ></p>
         <div className="options">
-          {answers.map((answer) => (
+          {answers?.map((answer) => (
             <ButtonWrapper
               key={answer}
               correct={userAnswers?.correctAnswer === answer}
