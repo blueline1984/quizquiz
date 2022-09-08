@@ -10,7 +10,7 @@ const Chart = ({ quiz, correctAnswerNumber }) => {
     datasets: [
       {
         label: "# of Quiz",
-        data: [correctAnswerNumber, quiz.length],
+        data: [correctAnswerNumber, quiz.length - correctAnswerNumber],
         backgroundColor: ["#F7CF6A", "#6DBDBF"],
         borderColor: ["#F7CF6A", "#6DBDBF"],
         borderWidth: 1,
