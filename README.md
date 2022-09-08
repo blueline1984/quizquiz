@@ -1,5 +1,5 @@
 # ❓ Quiz Quiz
-Quiz Quiz는 다양한 분야의 퀴즈를 풀 수 있는 웹 어플리케이션입니다.
+Quiz Quiz는 다양한 분야의 퀴즈를 풀 수 있는 웹 어플리케이션입니다. (❗️전체화면에 최적화되어 있습니다.)
 
 [Quiz Quiz](https://quizquiz-white.netlify.app)
 - 퀴즈 풀기 버튼을 눌러서 퀴즈 풀기를 시작합니다.
