@@ -28,7 +28,7 @@ npm start
 REACT_APP_API_URL=https://opentdb.com/api.php?
 ```
 #  ✏️ Plan
-- [Kanban](https://www.notion.so/c11abf6dbee0483dbc737001aced0727?v=2766bd01ac0c47b9a8af5b0420864c95)
+- [Kanban](https://daisy-shrew-1da.notion.site/c11abf6dbee0483dbc737001aced0727?v=2766bd01ac0c47b9a8af5b0420864c95)
 - [Figma](https://www.figma.com/file/rgGJpf8gT23bIpkLHcjtvj/Quiz-Quiz?node-id=0%3A1)
 
 # 🥽 Technical Skills
