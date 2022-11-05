@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import ResultSection from "../components/ResultSection";
 import Chart from "../components/Chart";
 import Background from "../components/Background";
+import SecondaryButton from "../components/Button/SecondaryButton";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { chageTimer } from "../utils/utils";
 import { BiTime } from "react-icons/bi";
@@ -36,7 +37,7 @@ const Result = ({ quiz, correctAnswerNumber }) => {
           }
         />
       </ResultSectionWrapper>
-      <button onClick={moveToMain}>Back To Main</button>
+      <SecondaryButton onClick={moveToMain} text="Back To Main" />
     </Background>
   );
 };

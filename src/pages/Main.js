@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "../components/Modal";
+import Primarybutton from "../components/Button/Primarybutton";
 import styled from "styled-components";
 
 const Main = ({
@@ -24,7 +25,7 @@ const Main = ({
     <div>
       <MainWrapper>
         <div className="title">Quiz Quiz</div>
-        <button onClick={openModal}>Get Started!</button>
+        <Primarybutton text="Get Started!" onClick={openModal} />
         {isModalOpen && (
           <Modal
             backgroundColor="#fff"
@@ -73,22 +74,6 @@ const MainWrapper = styled.div`
     font-family: "Rubik Marker Hatch";
     font-size: 9vw;
     color: #50aa63;
-  }
-
-  button {
-    width: 60%;
-    height: 6vh;
-    border: none;
-    margin-left: 23%;
-    margin-top: 5%;
-    font-size: 2rem;
-    border-radius: 100px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-  button:hover {
-    color: #50aa63;
-    background-color: #fff;
-    border: 1px solid #50aa63;
   }
 `;
 const QuestionWrapper = styled.div`

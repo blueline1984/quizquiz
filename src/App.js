@@ -19,6 +19,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useLocalStorage("isLoading-data", false);
   const [timer, setTimer] = useLocalStorage("timer-data", 0);
 
+  console.log("quiz", quiz);
+
   const checkAnswer = (event) => {
     const checkedAnswer = event.target.value;
     const isCorrect = quiz[number].correct_answer === checkedAnswer;
@@ -36,6 +38,7 @@ const App = () => {
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
+
   const moveToNextQuiz = () => {
     const nextQuizNumber = number + 1;
 

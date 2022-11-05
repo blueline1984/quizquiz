@@ -4,6 +4,7 @@ import Portal from "../Potal";
 import QuizSelectBox from "../components/QuizSelectBox";
 import { AMOUNT, CATEGORY, DIFFICULTY } from "../config/quizSelectOption";
 import { fetchQuizData } from "../api/api";
+import SecondaryButton from "./Button/SecondaryButton";
 import styled from "styled-components";
 
 const Modal = ({
@@ -27,12 +28,15 @@ const Modal = ({
   const handleNumber = (event) => {
     setAmount(event.target.value);
   };
+
   const handleDifficulty = (event) => {
     setDifficulty(event.target.value);
   };
+
   const handleCategory = (event) => {
     setCategory(event.target.value);
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -70,8 +74,8 @@ const Modal = ({
               options={DIFFICULTY}
               hadleSelectBox={handleDifficulty}
             />
-            <button type="submit">Start</button>
-            <button onClick={closeModal}>Cancel</button>
+            <SecondaryButton text="Start" type="submit" />
+            <SecondaryButton onClick={closeModal} text="Cancel" />
           </form>
         </ModalBody>
       </ModalOverlay>
@@ -100,27 +104,6 @@ const ModalBody = styled.div`
   zindex: 1000;
   border: 2px solid #50aa63;
   border-radius: 20px;
-
-  button {
-    display: flex;
-    position: relative;
-    left: 40%;
-    margin: 1rem;
-    padding: 1rem;
-    width: 7rem;
-    height: 3rem;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    border-radius: 10px;
-    border: none;
-  }
-
-  button:hover {
-    color: #50aa63;
-    background-color: #fff;
-    border: 1px solid #50aa63;
-  }
 `;
 
 const ModalContent = styled.div`
@@ -138,15 +121,6 @@ const ModalContent = styled.div`
     border-spacing: 5px 1rem;
     margin-bottom: 7%;
     font-size: 70px;
-    color: #fff;
-  }
-
-  button {
-    margin: 3%;
-    border: 1px solid #fff;
-    padding: 10px 15px;
-    width: 70%;
-    font-size: 35px;
     color: #fff;
   }
 `;
