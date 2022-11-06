@@ -1,42 +1,43 @@
 import { useState } from "react";
-import Modal from "../components/Modal";
+// import Modal from "../components/Modal";
+import Modal from "../components/Modal/Modal";
 import Primarybutton from "../components/Button/Primarybutton";
+import useModal from "../hooks/useModal";
+import useQuiz from "../hooks/useQuiz";
+import Form from "../components/Form";
 import styled from "styled-components";
 
-const Main = ({
-  setQuiz,
-  setIsOver,
-  setIsLoading,
-  setNumber,
-  setUserAnswers,
-  setCorrectAnswerNumber,
-  setTimer,
-}) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+const Main = () => {
+  const { isModalOpen, openModal, closeModal } = useModal();
+  const {
+    setQuiz,
+    setIsOver,
+    setIsLoading,
+    setNumber,
+    setUserAnswers,
+    setCorrectAnswerNumber,
+    setTimer,
+  } = useQuiz();
 
   return (
-    <div>
+    <>
       <MainWrapper>
-        <div className="title">Quiz Quiz</div>
+        <MainTitle className="title">Quiz Quiz</MainTitle>
         <Primarybutton text="Get Started!" onClick={openModal} />
         {isModalOpen && (
+          // <Modal
+          //   setQuiz={setQuiz}
+          //   setIsOver={setIsOver}
+          //   setIsLoading={setIsLoading}
+          //   setNumber={setNumber}
+          //   setUserAnswers={setUserAnswers}
+          //   setCorrectAnswerNumber={setCorrectAnswerNumber}
+          //   setTimer={setTimer}
+          // />
           <Modal
-            backgroundColor="#fff"
+            children={<Form />}
+            openModal={openModal}
             closeModal={closeModal}
-            setQuiz={setQuiz}
-            setIsOver={setIsOver}
-            setIsLoading={setIsLoading}
-            setNumber={setNumber}
-            setUserAnswers={setUserAnswers}
-            setCorrectAnswerNumber={setCorrectAnswerNumber}
-            setTimer={setTimer}
           />
         )}
       </MainWrapper>
@@ -60,7 +61,7 @@ const Main = ({
           data-testid="image-3"
         />
       </QuestionWrapper>
-    </div>
+    </>
   );
 };
 
@@ -69,13 +70,14 @@ const MainWrapper = styled.div`
   position: absolute;
   left: 48%;
   top: 30%;
-
-  .title {
-    font-family: "Rubik Marker Hatch";
-    font-size: 9vw;
-    color: #50aa63;
-  }
 `;
+
+const MainTitle = styled.div`
+  font-family: "Rubik Marker Hatch";
+  font-size: 9vw;
+  color: #50aa63;
+`;
+
 const QuestionWrapper = styled.div`
   position: relative;
 

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-const QuizSelectBox = ({ label, options, hadleSelectBox }) => {
+const QuizSelectBox = ({ label, options, onChange }) => {
   return (
     <QuizSelectBoxWrapper>
       <label htmlFor={label}>{label}</label>
       <select
         id={label}
         onChange={(event) => {
-          hadleSelectBox(event);
+          onChange(event);
         }}
       >
         {options.map((option) => (
@@ -32,17 +32,9 @@ const QuizSelectBoxWrapper = styled.div`
   align-items: center;
   color: #50aa63;
 
-  label {
-    position: absolute;
-    top: 30%;
-  }
-
   select {
-    position: absolute;
-    left: 50%;
-    top: 20%;
     width: 300%;
-    height: 70%;
+    height: 100%;
     margin: 0;
     padding: 0.2rem 0.5rem;
     color: #50aa63;
