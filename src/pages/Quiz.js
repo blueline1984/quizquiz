@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useInterval from "../hooks/useInterval";
+import useQuiz from "../hooks/useQuiz";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import styled from "styled-components";
 
@@ -20,6 +21,25 @@ const Quiz = ({
   setTimer,
   useAnswersArray,
 }) => {
+  // const {
+  //   correctAnswerNumber,
+  //   number,
+  //   userAnswers,
+  //   isLoading,
+  //   isOver,
+  //   timer,
+  //   setTimer,
+  //   quiz,
+  //   setQuiz,
+  //   setIsOver,
+  //   setIsLoading,
+  //   setNumber,
+  //   setUserAnswers,
+  //   checkAnswer,
+  //   moveToNextQuiz,
+  //   moveToPrevQuiz,
+  //   setCorrectAnswerNumber,
+  // } = useQuiz();
   const [delay, setDelay] = useState(1000);
   const navigate = useNavigate();
 

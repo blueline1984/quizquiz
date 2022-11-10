@@ -28,20 +28,7 @@ const App = () => {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <Main
-            setQuiz={setQuiz}
-            setIsOver={setIsOver}
-            setIsLoading={setIsLoading}
-            setNumber={setNumber}
-            setUserAnswers={setUserAnswers}
-            setCorrectAnswerNumber={setCorrectAnswerNumber}
-            setTimer={setTimer}
-          />
-        }
-      ></Route>
+      <Route path="/" element={<Main />} />
       <Route
         path="/quiz"
         element={
@@ -62,13 +49,13 @@ const App = () => {
             setTimer={setTimer}
           />
         }
-      ></Route>
+      />
       <Route
         path="/result"
         element={
           <Result quiz={quiz} correctAnswerNumber={correctAnswerNumber} />
         }
-      ></Route>
+      />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
